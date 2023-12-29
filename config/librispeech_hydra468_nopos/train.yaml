@@ -1,0 +1,84 @@
+accum_grad: 1
+cmvn_file: /config/librispeech_hydra468_nopos/global_cmvn
+dataset_conf:
+  batch_conf:
+    batch_size: 16
+    batch_type: dynamic
+    max_frames_in_batch: 12000
+  fbank_conf:
+    dither: 1.0
+    frame_length: 25
+    frame_shift: 10
+    num_mel_bins: 80
+  filter_conf:
+    max_length: 40960
+    min_length: 0
+    token_max_length: 400
+    token_min_length: 1
+  resample_conf:
+    resample_rate: 16000
+  shuffle: true
+  shuffle_conf:
+    shuffle_size: 1500
+  sort: true
+  sort_conf:
+    sort_size: 500
+  spec_aug: true
+  spec_aug_conf:
+    max_f: 10
+    max_t: 50
+    num_f_mask: 2
+    num_t_mask: 2
+    warp_for_time: true
+  spec_sub: true
+  spec_sub_conf:
+    max_t: 30
+    num_t_sub: 3
+  speed_perturb: true
+decoder: bitransformer
+decoder_conf:
+  attention_heads: 4
+  dropout_rate: 0.1
+  linear_units: 2048
+  num_blocks: 3
+  positional_dropout_rate: 0.1
+  r_num_blocks: 3
+  self_attention_dropout_rate: 0.1
+  src_attention_dropout_rate: 0.1
+encoder: conformer
+encoder_conf:
+  activation_type: swish
+  attention_dropout_rate: 0.1
+  attention_heads: 4
+  causal: true
+  cnn_module_kernel: 31
+  cnn_module_norm: layer_norm
+  dropout_rate: 0.1
+  input_layer: hydra_4_6_8
+  linear_units: 2048
+  normalize_before: true
+  num_blocks: 12
+  output_size: 256
+  pos_enc_layer_type: no_pos
+  positional_dropout_rate: 0.1
+  selfattention_layer_type: selfattn
+  use_cnn_module: true
+  use_dynamic_chunk: true
+  use_dynamic_left_chunk: false
+grad_clip: 5
+input_dim: 80
+is_json_cmvn: true
+log_interval: 100
+max_epoch: 120
+model_conf:
+  ctc_weight: 0.3
+  length_normalized_loss: false
+  lsm_weight: 0.1
+  reverse_weight: 0.3
+optim: adam
+optim_conf:
+  lr: 0.001
+output_dim: 5002
+scheduler: warmuplr
+scheduler_conf:
+  warmup_steps: 25000
