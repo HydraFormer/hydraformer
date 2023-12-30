@@ -1,7 +1,9 @@
 # Hydraformer
 
 ![model](picture/1.png)
+*Figure 1:Comparison of HydraFormer and single subsampling rate ASR models
 
+HydraFormer, comprising HydraSub, a Conformer-based encoder, and a BiTransformer-based decoder. HydraSub encompasses multiple branches, each representing a distinct subsampling rate, allowing for the flexible selection of any branch during inference based on the specific use case. HydraFormer can efficiently manage different subsampling rates, significantly reducing training and deployment expenses. 
 ## Introduction
 This repo is the code of HydraFormer: One Encoder For All Subsampling Rates which submitted to ICME2024. The code is based on [wenet](https://github.com/wenet-e2e/wenet), and we will release all the code and checkpoint after the paper is accepted.
 
