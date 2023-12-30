@@ -9,13 +9,26 @@ This repo is the code of HydraFormer: One Encoder For All Subsampling Rates whic
 
 Hydraformer may contain multiple subsampling rates, in this repo, we set the subsampling rate to 4,6,8. You may add the subsampling rate numbers freely.
 
-To clarify, HydraFormer consists of a Conformer-based encoder, a Bi-Transformer-based decoder, and HydraSub. It has 51M parameters in total, with 30M for the encoder, 14M for the decoder, and 7M for HydraSub.
-
-The baseline models feature the same Conformer-based encoder and Bi-Transformer-based decoder, totaling 48M parameters, with 30M for the Conformer-based encoder and 14M for the Bi-Transformer-based decoder. The only 3M difference lies in the subsampling component. This minor difference results in a negligible increase in training cost for HydraFormer compared to a single-subsampling-rate model. However, HydraFormer can achieve performance nearly on par with multiple single-subsampling-rate models.
 
 To ensure the reproducibility of the experiment, we provide the config file of our experiments in the 'config' folder. Each experiment corresponds to a config file, such as 'aishell_hydraformer_468_nopos' means the experiment is trained on the AISHELL dataset, and the subsampling rate is 4,6,8, and the positional encoding is not used.
 
 We will make the checkpoint of our experiments public after the paper is accepted. As the checkpoint is too large, we will upload it to the Baidu Netdisk and Google Drive. You can download it from the following links freely. Due to the double-blind review, the link is hidden because it contains the author's name. We will make it public after the paper is accepted.
+
+## More details about experiments
+
+Comparison of HydraFormer's size and single subsampling rate ASR models' size 
+|             | **Encoder** | **Decoder** | **Subsampling part** | **All** |
+| ----------- | ----------- | ----------- | -------------------- | ------- |
+| Baseline4   | 31.6        | 13.8        | 1.8                  | 48.3    |
+| Baseline6   | 31.6        | 13.8        | 2.4                  | 48.9    |
+| baseline8   | 31.6        | 13.8        | 1.7                  | 48.3    |
+| HydraFormer | 31.6        | 13.8        | 6.0                  | 51.7    |
+
+
+
+To clarify, HydraFormer consists of a Conformer-based encoder, a Bi-Transformer-based decoder, and HydraSub. It has 51.7M parameters in total, with 31.6M for the encoder, 13.8M for the decoder, and 6.0M for HydraSub.
+
+The baseline models feature the same Conformer-based encoder and Bi-Transformer-based decoder, totaling 48M parameters, with 31.6M for the Conformer-based encoder and 13.8M for the Bi-Transformer-based decoder. The only 3M difference lies in the subsampling component. This minor difference results in a negligible increase in training cost for HydraFormer compared to a single-subsampling-rate model. However, HydraFormer can achieve performance nearly on par with multiple single-subsampling-rate models.
 
 ## Installation
 
