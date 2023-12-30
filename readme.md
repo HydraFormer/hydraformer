@@ -16,12 +16,12 @@ We will make the checkpoint of our experiments public after the paper is accepte
 
 ## More details about experiments
 
-Comparison of HydraFormer's size and single subsampling rate ASR models' size 
+Comparison of HydraFormer's size and single subsampling rate ASR models' size(M) 
 |             | **Encoder** | **Decoder** | **Subsampling part** | **All** |
 | ----------- | ----------- | ----------- | -------------------- | ------- |
-| Baseline4   | 31.6        | 13.8        | 1.8                  | 48.3    |
-| Baseline6   | 31.6        | 13.8        | 2.4                  | 48.9    |
-| baseline8   | 31.6        | 13.8        | 1.7                  | 48.3    |
+| Baseline 1/4sub   | 31.6        | 13.8        | 1.8                  | 48.3    |
+| Baseline 1/6sub   | 31.6        | 13.8        | 2.4                  | 48.9    |
+| Baseline 1/8sub   | 31.6        | 13.8        | 1.7                  | 48.3    |
 | HydraFormer | 31.6        | 13.8        | 6.0                  | 51.7    |
 
 
