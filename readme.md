@@ -1,4 +1,7 @@
 # Hydraformer
+
+![model](picture/1.png)
+
 ## Introduction
 This repo is the code of HydraFormer: One Encoder For All Subsampling Rates which submitted to ICME2024. The code is based on [wenet](https://github.com/wenet-e2e/wenet), and we will release all the code and checkpoint after the paper is accepted.
 
