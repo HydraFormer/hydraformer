@@ -16,7 +16,7 @@ We will make the checkpoint of our experiments public after the paper is accepte
 
 ## Training and Inference examples of HydraFormer
 ![model](picture/compare.png)
-*Figure 2: Comparison of training and inference examples of HydraFormer in the cloud and edge scenarios. <img src="picture/fire.png" alt="fire" width="10"/> represents the use of training or inference steps within the HydraFormer framework.
+*Figure 2: Comparison of training and inference examples of HydraFormer in the cloud and edge scenarios. <img src="picture/fire.png" alt="fire" width="10"/> designates branches that are in an active or engaged state during training and inference steps.
 
 For example, consider a hybrid cloud-edge system. The cloud ASR model is trained with a subsampling rate of 4, as accuracy is the paramount metric in the cloud scenario. Meanwhile, the edge ASR model is trained with a subsampling rate of 8, with speed as the primary concern. The edge side is responsible for quickly generating results, tolerating certain errors, as the final outcomes will be replaced by the more accurate results from the cloud. Traditionally, this would require training two independent models, doubling the training cost. By employing HydraFormer, one can configure HydraSub as a combination of subsampling rates 4 and 8. In this setup, a single model can **adapt to both cloud and edge scenarios**, effectively reducing the training cost by **50%** compared to the conventional approach.
 
