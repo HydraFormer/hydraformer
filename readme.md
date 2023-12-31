@@ -3,9 +3,9 @@
 ![model](picture/1.png)
 *Figure 1:Comparison of HydraFormer and single subsampling rate ASR models
 
-HydraFormer, comprising HydraSub, a Conformer-based encoder, and a BiTransformer-based decoder. HydraSub encompasses multiple branches, each representing a distinct subsampling rate, allowing for the flexible selection of any branch during inference based on the specific use case. HydraFormer can efficiently manage different subsampling rates, significantly reducing training and deployment expenses. 
+HydraFormer, comprising HydraSub, a Conformer-based encoder, and a BiTransformer-based decoder. HydraSub encompasses multiple branches, each representing a distinct subsampling rate, allowing for the flexible selection of any branch during inference based on the specific use case. HydraFormer can efficiently **manage different subsampling rates**, significantly reducing training and deployment expenses. 
 ## Introduction
-This repo is the code of HydraFormer: One Encoder For All Subsampling Rates which submitted to ICME2024. The code is based on [wenet](https://github.com/wenet-e2e/wenet), and we will release all the code and checkpoint after the paper is accepted.
+This repo is the code of **HydraFormer: One Encoder For All Subsampling Rates** which submitted to ICME2024. The code is based on [wenet](https://github.com/wenet-e2e/wenet), and we will release all the code and checkpoint after the paper is accepted.
 
 Hydraformer may contain multiple subsampling rates, in this repo, we set the subsampling rate to 4,6,8. You may add the subsampling rate numbers freely.
 
@@ -18,12 +18,12 @@ We will make the checkpoint of our experiments public after the paper is accepte
 ![model](picture/compare.png)
 *Figure 2:Comparison of training and inference examples of HydraFormer in the cloud and edge scenarios
 
-For example, consider a hybrid cloud-edge system. The cloud ASR model is trained with a subsampling rate of 4, as accuracy is the paramount metric in the cloud scenario. Meanwhile, the edge ASR model is trained with a subsampling rate of 8, with speed as the primary concern. The edge side is responsible for quickly generating results, tolerating certain errors, as the final outcomes will be replaced by the more accurate results from the cloud. Traditionally, this would require training two independent models, doubling the training cost. By employing HydraFormer, one can configure HydraSub as a combination of subsampling rates 4 and 8. In this setup, a single model can adapt to both cloud and edge scenarios, effectively reducing the training cost by 50% compared to the conventional approach.
+For example, consider a hybrid cloud-edge system. The cloud ASR model is trained with a subsampling rate of 4, as accuracy is the paramount metric in the cloud scenario. Meanwhile, the edge ASR model is trained with a subsampling rate of 8, with speed as the primary concern. The edge side is responsible for quickly generating results, tolerating certain errors, as the final outcomes will be replaced by the more accurate results from the cloud. Traditionally, this would require training two independent models, doubling the training cost. By employing HydraFormer, one can configure HydraSub as a combination of subsampling rates 4 and 8. In this setup, a single model can **adapt to both cloud and edge scenarios**, effectively reducing the training cost by **50%** compared to the conventional approach.
 
-In the train stage, we use all the hydrasub branches to train the model. Specifically, in every training step, we randomly select one of the HydraSub branches, denoted as HydraSub-n, such as Hydrasub-4. To ensure consistent performance across all branches, we implement a balanced training process where each branch is randomly selected through a uniform distribution, guaranteeing that every branch receives equal training opportunities.
+In the train stage, we use **all the hydrasub** branches to train the model. Specifically, in every training step, we randomly select one of the HydraSub branches, denoted as HydraSub-n, such as Hydrasub-4. To ensure consistent performance across all branches, we implement a balanced training process where each branch is randomly selected through a uniform distribution, guaranteeing that every branch receives equal training opportunities.
 
-In the inference stage, if in the cloud scenario, we only use the HydraSub-4 branch to inference. We do not use the HydraSub-6, HydraSub-8 or other branches for gain a better recognition accuracy.
-If in the edge scenario, we only use the HydraSub-8 branch to inference, as the inference speed is the paramount metric in the edge scenario. We do not use the HydraSub-4, HydraSub-6 or other branches for gain a better inference speed.
+In the inference stage, if in the cloud scenario, we **only use the HydraSub-4 branch** to inference. We do not use the HydraSub-6, HydraSub-8 or other branches for gain a better recognition accuracy.
+If in the edge scenario, we **only use the HydraSub-8 branch** to inference, as the inference speed is the paramount metric in the edge scenario. We do not use the HydraSub-4, HydraSub-6 or other branches for gain a better inference speed.
 
 ## More details about experiments
 
@@ -39,7 +39,7 @@ Comparison of HydraFormer's size and single subsampling rate ASR models' size(M)
 
 To clarify, HydraFormer consists of a Conformer-based encoder, a Bi-Transformer-based decoder, and HydraSub. It has 51.7M parameters in total, with 31.6M for the encoder, 13.8M for the decoder, and 6.0M for HydraSub.
 
-The baseline models feature the same Conformer-based encoder and Bi-Transformer-based decoder, totaling 48M parameters, with 31.6M for the Conformer-based encoder and 13.8M for the Bi-Transformer-based decoder. The only 3M difference lies in the subsampling component. This minor difference results in a negligible increase in training cost for HydraFormer compared to a single-subsampling-rate model. However, HydraFormer can achieve performance nearly on par with multiple single-subsampling-rate models.
+The baseline models feature the same Conformer-based encoder and Bi-Transformer-based decoder, totaling 48M parameters, with 31.6M for the Conformer-based encoder and 13.8M for the Bi-Transformer-based decoder. The **only 3M difference lies in the subsampling component**. This minor difference results in a negligible increase in training cost for HydraFormer compared to a single-subsampling-rate model. However, HydraFormer can achieve performance nearly on par with multiple single-subsampling-rate models.
 
 ## Installation
 
