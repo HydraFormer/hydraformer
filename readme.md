@@ -14,6 +14,17 @@ To ensure the reproducibility of the experiment, we provide the config file of o
 
 We will make the checkpoint of our experiments public after the paper is accepted. As the checkpoint is too large, we will upload it to the Baidu Netdisk and Google Drive. You can download it from the following links freely. Due to the double-blind review, the link is hidden because it contains the author's name. We will make it public after the paper is accepted.
 
+## Training and Inference examples of HydraFormer
+![model](picture/compare.png)
+*Figure 2:Comparison of training and inference examples of HydraFormer in the cloud and edge scenarios
+
+For example, consider a hybrid cloud-edge system. The cloud ASR model is trained with a subsampling rate of 4, as accuracy is the paramount metric in the cloud scenario. Meanwhile, the edge ASR model is trained with a subsampling rate of 8, with speed as the primary concern. The edge side is responsible for quickly generating results, tolerating certain errors, as the final outcomes will be replaced by the more accurate results from the cloud. Traditionally, this would require training two independent models, doubling the training cost. By employing HydraFormer, one can configure HydraSub as a combination of subsampling rates 4 and 8. In this setup, a single model can adapt to both cloud and edge scenarios, effectively reducing the training cost by 50% compared to the conventional approach.
+
+In the train stage, we use all the hydrasub branches to train the model. Specifically, in every training step, we randomly select one of the HydraSub branches, denoted as HydraSub-n, such as Hydrasub-4. To ensure consistent performance across all branches, we implement a balanced training process where each branch is randomly selected through a uniform distribution, guaranteeing that every branch receives equal training opportunities.
+
+In the inference stage, if in the cloud scenario, we only use the HydraSub-4 branch to inference. We do not use the HydraSub-6, HydraSub-8 or other branches for gain a better recognition accuracy.
+If in the edge scenario, we only use the HydraSub-8 branch to inference, as the inference speed is the paramount metric in the edge scenario. We do not use the HydraSub-4, HydraSub-6 or other branches for gain a better inference speed.
+
 ## More details about experiments
 
 Comparison of HydraFormer's size and single subsampling rate ASR models' size(M) 
